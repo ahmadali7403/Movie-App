@@ -1,16 +1,13 @@
-import { Outlet } from 'react-router-dom'
-import Navbar from './Navbar'
-import PageContainer from './PageContainer'
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Layout = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-netflix-black text-white">
+    <div className="min-h-screen bg-netflix-black text-white">
       <Navbar />
-      <PageContainer>
-        <Outlet />
-      </PageContainer>
+      <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
