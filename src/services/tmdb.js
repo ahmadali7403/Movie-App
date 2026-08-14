@@ -22,11 +22,7 @@ export const getTopRatedMovies = async () => {
 };
 
 // Movies with genre, year and minimum rating filters
-export const getMoviesByGenre = async (
-  genreId,
-  year = "",
-  minRating = ""
-) => {
+export const getMoviesByGenre = async (genreId, year = "", minRating = "") => {
   const response = await tmdb.get("/discover/movie", {
     params: {
       with_genres: genreId,
@@ -34,6 +30,27 @@ export const getMoviesByGenre = async (
       ...(minRating && { "vote_average.gte": minRating }),
     },
   });
+
+  return response.data.results;
+};
+
+// Single movie details
+export const getMovieDetails = async (id) => {
+  const response = await tmdb.get(`/movie/${id}`);
+
+  return response.data;
+};
+
+// Movie cast and crew
+export const getMovieCredits = async (id) => {
+  const response = await tmdb.get(`/movie/${id}/credits`);
+
+  return response.data;
+};
+
+// Similar movies
+export const getSimilarMovies = async (id) => {
+  const response = await tmdb.get(`/movie/${id}/similar`);
 
   return response.data.results;
 };
