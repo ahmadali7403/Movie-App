@@ -54,5 +54,14 @@ export const getSimilarMovies = async (id) => {
 
   return response.data.results;
 };
+// Search movies
+export const searchMovies = async (query) => {
+  const response = await tmdb.get("/search/movie", {
+    params: {
+      query,
+    },
+  });
 
+  return response.data.results;
+};
 export default tmdb;
