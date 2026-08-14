@@ -21,11 +21,17 @@ export const getTopRatedMovies = async () => {
   return response.data.results;
 };
 
-// Movies by genre
-export const getMoviesByGenre = async (genreId) => {
+// Movies with genre, year and minimum rating filters
+export const getMoviesByGenre = async (
+  genreId,
+  year = "",
+  minRating = ""
+) => {
   const response = await tmdb.get("/discover/movie", {
     params: {
       with_genres: genreId,
+      ...(year && { primary_release_year: year }),
+      ...(minRating && { "vote_average.gte": minRating }),
     },
   });
 
