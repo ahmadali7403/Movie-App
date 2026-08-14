@@ -49,7 +49,7 @@ const Navbar = () => {
           onClick={closeMenu}
           className="shrink-0 text-xl font-bold tracking-tight text-netflix-red sm:text-2xl"
         >
-          MOVIE
+          CINEMO
         </NavLink>
 
         {/* Desktop Navigation */}
