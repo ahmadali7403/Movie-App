@@ -42,7 +42,7 @@ const ContentRow = ({ title, movies = [], loading = false }) => {
         <button
           type="button"
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 z-20 hidden h-12 w-10 -translate-y-1/2 items-center justify-center rounded-r-md bg-black/70 text-white hover:bg-black md:flex"
+          className="absolute left-0 top-1/2 z-20 hidden h-12 w-10 -translate-y-1/2 items-center justify-center rounded-r-md bg-black/70 text-white hover:bg-black md:flex cursor-pointer"
           aria-label={`Scroll ${title} left`}
         >
           <ChevronLeft size={28} />
@@ -70,7 +70,7 @@ const ContentRow = ({ title, movies = [], loading = false }) => {
         <button
           type="button"
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 z-20 hidden h-12 w-10 -translate-y-1/2 items-center justify-center rounded-l-md bg-black/70 text-white hover:bg-black md:flex"
+          className="absolute right-0 top-1/2 z-20 hidden h-12 w-10 -translate-y-1/2 items-center justify-center rounded-l-md bg-black/70 text-white hover:bg-black md:flex cursor-pointer"
           aria-label={`Scroll ${title} right`}
         >
           <ChevronRight size={28} />

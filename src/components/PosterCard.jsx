@@ -45,7 +45,7 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
             {/* Play button */}
             <button
               type="button"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-105"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-105 cursor-pointer"
               aria-label={`Play ${movie?.title || "movie"}`}
             >
               <Play size={16} fill="currentColor" />
@@ -55,7 +55,7 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
             <button
               type="button"
               onClick={() => onAddToList?.(movie)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-400 bg-black/60 text-white transition-colors hover:border-white"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-400 bg-black/60 text-white transition-colors hover:border-white cursor-pointer"
               aria-label={
                 isInList
                   ? `Remove ${movie?.title || "movie"} from My List`
@@ -68,7 +68,7 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
             {/* More information button */}
             <button
               type="button"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-400 bg-black/60 text-white transition-colors hover:border-white"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-400 bg-black/60 text-white transition-colors hover:border-white cursor-pointer"
               aria-label={`More information about ${movie?.title || "movie"}`}
             >
               <Info size={17} />
@@ -76,7 +76,7 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
           </div>
 
           {/* Movie title */}
-          <h3 className="mt-3 line-clamp-1 text-sm font-semibold text-white">
+          <h3 className="mt-3 line-clamp-1 text-sm font-semibold text-white cursor-pointer">
             {movie?.title}
           </h3>
 
