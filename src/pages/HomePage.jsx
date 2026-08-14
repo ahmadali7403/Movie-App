@@ -55,37 +55,38 @@ const HomePage = () => {
     loadHomeData();
   }, []);
 
-  // Error state
   if (error) {
     return (
-      <main className="min-h-screen bg-netflix-black px-4 py-24 text-white sm:px-6 lg:px-8">
-        <div className="flex min-h-[400px] items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold">Failed to load Movie</h1>
+      <main className="flex min-h-screen items-center justify-center bg-netflix-black px-4 text-white">
+        <div className="max-w-md text-center">
+          <h1 className="text-2xl font-bold sm:text-3xl">
+            Failed to load movies
+          </h1>
 
-            <p className="mt-2 text-neutral-400">{error}</p>
-          </div>
+          <p className="mt-3 text-sm leading-6 text-neutral-400 sm:text-base">
+            {error}
+          </p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-netflix-black">
+    <main className="min-h-screen overflow-x-hidden bg-netflix-black">
       {/* Hero */}
       {loading ? (
-        <div className="h-[560px] w-full animate-pulse bg-neutral-900 sm:h-[600px]" />
+        <div className="h-[520px] w-full animate-pulse bg-neutral-900 sm:h-[560px] lg:h-[600px]" />
       ) : (
         <HeroBanner movies={trending} />
       )}
 
-      {/* Movie rows */}
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="space-y-8">
+      {/* Movie Rows */}
+      <div className="mx-auto w-full max-w-7xl px-4 py-7 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+        <div className="space-y-8 sm:space-y-10 lg:space-y-12">
           {/* Trending */}
           {loading ? (
             <section>
-              <div className="mb-4 h-7 w-48 animate-pulse rounded bg-neutral-800" />
+              <div className="mb-4 h-7 w-40 animate-pulse rounded bg-neutral-800 sm:w-48" />
               <SkeletonLoader count={6} />
             </section>
           ) : (
@@ -95,7 +96,7 @@ const HomePage = () => {
           {/* Top Rated */}
           {loading ? (
             <section>
-              <div className="mb-4 h-7 w-40 animate-pulse rounded bg-neutral-800" />
+              <div className="mb-4 h-7 w-36 animate-pulse rounded bg-neutral-800 sm:w-40" />
               <SkeletonLoader count={6} />
             </section>
           ) : (
@@ -105,7 +106,7 @@ const HomePage = () => {
           {/* Action */}
           {loading ? (
             <section>
-              <div className="mb-4 h-7 w-32 animate-pulse rounded bg-neutral-800" />
+              <div className="mb-4 h-7 w-28 animate-pulse rounded bg-neutral-800 sm:w-32" />
               <SkeletonLoader count={6} />
             </section>
           ) : (
@@ -115,7 +116,7 @@ const HomePage = () => {
           {/* Comedy */}
           {loading ? (
             <section>
-              <div className="mb-4 h-7 w-32 animate-pulse rounded bg-neutral-800" />
+              <div className="mb-4 h-7 w-28 animate-pulse rounded bg-neutral-800 sm:w-32" />
               <SkeletonLoader count={6} />
             </section>
           ) : (
@@ -125,7 +126,7 @@ const HomePage = () => {
           {/* Horror */}
           {loading ? (
             <section>
-              <div className="mb-4 h-7 w-32 animate-pulse rounded bg-neutral-800" />
+              <div className="mb-4 h-7 w-28 animate-pulse rounded bg-neutral-800 sm:w-32" />
               <SkeletonLoader count={6} />
             </section>
           ) : (
