@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Play, Plus, Info, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useMyList } from "../context/MyListContext.jsx";
 
-const PosterCard = ({ movie, onAddToList, isInList }) => {
+const PosterCard = ({ movie }) => {
   const navigate = useNavigate();
+
+  const { toggleMovie, isInList } = useMyList();
 
   const imageUrl = movie?.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -12,6 +15,12 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
   // Open movie detail page
   const openDetails = () => {
     navigate(`/title/${movie.id}`);
+  };
+
+  // Add / Remove movie from My List
+  const handleToggleList = (e) => {
+    e.stopPropagation();
+    toggleMovie(movie);
   };
 
   return (
@@ -57,18 +66,15 @@ const PosterCard = ({ movie, onAddToList, isInList }) => {
             {/* Add / Remove from My List */}
             <button
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onAddToList?.(movie);
-              }}
+              onClick={handleToggleList}
               className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-neutral-400 bg-black/60 text-white transition-colors hover:border-white"
               aria-label={
-                isInList
+                isInList(movie?.id)
                   ? `Remove ${movie?.title || "movie"} from My List`
                   : `Add ${movie?.title || "movie"} to My List`
               }
             >
-              {isInList ? <Check size={17} /> : <Plus size={17} />}
+              {isInList(movie?.id) ? <Check size={17} /> : <Plus size={17} />}
             </button>
 
             {/* More information */}

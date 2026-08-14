@@ -44,7 +44,7 @@ const SearchPage = () => {
   }, [debouncedQuery]);
 
   return (
-    <main className="min-h-screen bg-netflix-black px-4 py-8 mt-8 text-white sm:px-6 lg:px-8">
+    <main className="bg-netflix-black px-4 py-8 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Search input */}
         <div className="relative mx-auto max-w-2xl">
@@ -64,7 +64,7 @@ const SearchPage = () => {
 
         {/* Empty state */}
         {!query.trim() && !loading && (
-          <div className="flex min-h-[400px] items-center justify-center">
+          <div className="flex min-h-[calc(100vh-12rem)] items-center justify-center">
             <div className="text-center">
               <SearchIcon size={48} className="mx-auto text-neutral-700" />
 

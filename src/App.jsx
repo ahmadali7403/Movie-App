@@ -4,8 +4,8 @@ import HomePage from "./pages/HomePage";
 import BrowsePage from "./pages/BrowsePage";
 import TitleDetailPage from "./pages/TitleDetailPage";
 import SearchPage from "./pages/SearchPage";
-import MyListPage from "./pages/MyListPage";
 import ProfilesPage from "./pages/ProfilesPage";
+import MyListPage from "./pages/MyListPage";
 
 const App = () => {
   return (

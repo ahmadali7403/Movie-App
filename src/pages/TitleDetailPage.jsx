@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Play, Plus, Check, ArrowLeft } from "lucide-react";
+import { Play, Plus, Check } from "lucide-react";
 
 import {
   getMovieDetails,
@@ -11,6 +11,7 @@ import {
 
 import ContentRow from "../components/ContentRow";
 import SkeletonLoader from "../components/SkeletonLoader";
+import { useMyList } from "../context/MyListContext.jsx";
 
 const TitleDetailPage = () => {
   const { id } = useParams();
@@ -22,7 +23,8 @@ const TitleDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const [isInList, setIsInList] = useState(false);
+  // Global My List state
+  const { toggleMovie, isInList } = useMyList();
 
   useEffect(() => {
     const loadMovieData = async () => {
@@ -49,10 +51,6 @@ const TitleDetailPage = () => {
 
     loadMovieData();
   }, [id]);
-
-  // Full-page detail view is used instead of a modal because
-  // it provides better navigation and a cleaner responsive
-  // experience, especially on mobile devices.
 
   if (loading) {
     return (
@@ -94,6 +92,12 @@ const TitleDetailPage = () => {
   const releaseYear = movie.release_date
     ? movie.release_date.slice(0, 4)
     : "N/A";
+
+  const movieIsInList = isInList(movie.id);
+
+  const handleToggleList = () => {
+    toggleMovie(movie);
+  };
 
   return (
     <main className="min-h-screen bg-netflix-black text-white">
@@ -192,22 +196,24 @@ const TitleDetailPage = () => {
 
               {/* Actions */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
+                {/* Play */}
                 <button
                   type="button"
-                  className="flex items-center gap-2 rounded-md bg-white px-5 py-3 font-semibold text-black transition-transform hover:scale-105 cursor-pointer"
+                  className="flex cursor-pointer items-center gap-2 rounded-md bg-white px-5 py-3 font-semibold text-black transition-transform hover:scale-105"
                 >
                   <Play size={19} fill="currentColor" />
                   Play
                 </button>
 
+                {/* Add / Remove My List */}
                 <button
                   type="button"
-                  onClick={() => setIsInList((prev) => !prev)}
-                  className="flex items-center gap-2 rounded-md border border-neutral-500 bg-black/50 px-5 py-3 font-semibold text-white backdrop-blur-sm transition-colors hover:border-white cursor-pointer"
+                  onClick={handleToggleList}
+                  className="flex cursor-pointer items-center gap-2 rounded-md border border-neutral-500 bg-black/50 px-5 py-3 font-semibold text-white backdrop-blur-sm transition-colors hover:border-white"
                 >
-                  {isInList ? <Check size={19} /> : <Plus size={19} />}
+                  {movieIsInList ? <Check size={19} /> : <Plus size={19} />}
 
-                  {isInList ? "In My List" : "Add to My List"}
+                  {movieIsInList ? "In My List" : "Add to My List"}
                 </button>
               </div>
             </motion.div>
